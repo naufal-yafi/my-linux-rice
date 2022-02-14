@@ -1,0 +1,244 @@
+
+[module/time]
+type = internal/date
+interval = 60
+
+format = <label>
+format-background = #1C1C1C
+format-foreground = #DDCCBB
+
+;date = 󰥔 %H:%M%{F-}
+date =  %H:%M%{F-}
+;time-alt = 󰃭 %a, %b %d%{F-}
+time-alt =  %a, %b %d%{F-}
+
+[module/enp]
+type = internal/network
+interface = enp0s3
+
+format-connected = "<ramp-signal>"
+label-connected = ""
+lebel-connected-foreground = #6495ED
+label-connected-background = #1C1C1C
+
+format-disconected = <label-disconnected>
+label-disconnected = "睊"
+label-disconnected-foreground = #CC5533
+label-disconnected-font = 2
+
+ramp-signal-0 = %{T5}%{T-}
+ramp-signal-1 = %{T5}%{T-}
+ramp-signal-2 = %{T5}%{T-}
+ramp-signal-3 = %{T5}%{T-}
+ramp-signal-foreground = #DDCCBB
+ramp-signal-background = #1C1C1C
+ramp-signal-font = 2
+
+[module/logo]
+type = custom/text
+content = 
+content-font = 3
+content-foreground = #6495ED
+
+[module/title]
+type = internal/xwindow
+
+format = <label>
+
+label = |   %title%
+label-maxlen = 15 ...
+label-foreground = #80C4DE
+
+label-empty = | 
+label-empty-foreground = #DDCCBB
+
+[module/volume]
+type = internal/pulseaudio
+
+sink = alsa_output.pci-0000_12_00.3.analog-stereo
+use-ui-max = false
+interval = 5
+
+format-volume = <ramp-volume> <label-volume>
+
+format-muted = <label-muted>
+format-muted-prefix = 婢
+format-muted-prefix-font = 2
+format-muted-prefix-foreground = #CC5533
+
+#label-volume = %percentage%%
+label-volume = 
+label-muted = " Mute"
+label-muted-foreground = #554444
+
+ramp-volume-0 = 奄
+ramp-volume-1 = 奄
+ramp-volume-2 = 奄
+ramp-volume-3 = 奔
+ramp-volume-4 = 奔
+ramp-volume-5 = 奔
+ramp-volume-6 = 墳
+ramp-volume-7 = 墳
+ramp-volume-8 = 墳
+ramp-volume-9 = 墳
+ramp-volume-font = 2
+ramp-volume-foreground = #DDCCBB
+
+ramp-headphones-0 = 
+ramp-headphones-1 = 
+
+[module/powermenu]
+type = custom/menu
+
+format-foreground = ${colors.xcolor7}
+format-background = ${colors.xcolor0}
+
+
+label-open = "拉"
+label-open-font = 4
+label-open-foreground = #cd5c5c
+label-close = " "
+label-close-foreground = #DDCCBB
+label-separator = " ◆ "
+label-separator-foreground = ${color.BLACK}
+
+
+; reboot
+menu-0-0 = " "
+menu-0-0-exec = systemctl reboot
+menu-0-0-foreground = #deb887
+; shutdown
+menu-0-1 = "   "
+menu-0-1-exec = systemctl poweroff
+menu-0-1-foreground =  #cd5c5c
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = AC
+full-at = 90
+
+format-charging = "<animation-charging><label-charging>"
+;format-charging-underline = ${colors.foreground}
+label-charging-foreground = ${colors.foreground}
+label-charging-background = ${colors.background}
+
+format-discharging = "<ramp-capacity><label-discharging>"
+;format-discharging-underline = ${self.format-charging-underline}
+label-discharging-foreground = #DDCCBB
+label-discharging-background = #1C1C1C
+
+format-full-prefix = "  "
+format-full-prefix-foreground = #86af80
+format-full-prefix-background = #1C1C1C
+;format-full-underline = ${self.format-charging-underline}
+
+ramp-capacity-0 = "  "
+ramp-capacity-0-foreground = #cd5c5c
+ramp-capacity-1 = "  "
+ramp-capacity-1-foreground = #cd5c5c
+ramp-capacity-2 = "  "
+ramp-capacity-2-foreground = #DEB887
+ramp-capacity-3 = "  "
+ramp-capacity-foreground = #86af80
+ramp-capacity-background = #1C1C1C
+
+animation-charging-0 = "  "
+animation-charging-1 = "  "
+animation-charging-2 = "  "
+animation-charging-3 = "  "
+animation-charging-foreground = #86AF80
+animation-charging-background = #1C1C1C
+animation-charging-framerate = 750
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+[module/bspwm]
+type = internal/bspwm
+
+pin-workspaces = true
+inline-mode = false
+
+enable-click = true
+enable-scroll = true
+reverse-scroll = true
+
+fuzzy-match = true
+
+; ws-icon-[0-9]+ = label;icon
+; Note that the label needs to correspond with the bspwm workspace name
+ws-icon-0 = I;
+ws-icon-1 = II;
+ws-icon-2 = III;
+ws-icon-3 = IV;
+ws-icon-4 = V;
+ws-icon-5 = VI;
+ws-icon-6 = VII;
+ws-icon-7 = VIII;
+ws-icon-default = 
+
+format = <label-state>
+format-font = 2
+
+label-monitor = %name%
+
+; If any values for label-dimmed-N are defined, the workspace/mode
+; colors will get overridden with those values if the monitor is out of focus
+; To only override workspaces in a specific state, use:
+;   label-dimmed-focused
+;   label-dimmed-occupied
+;   label-dimmed-urgent
+;   label-dimmed-empty
+;label-dimmed-foreground = #DDCCBB
+;label-dimmed-underline = #E8AE5B
+;label-dimmed-focused-background = #1C1C1C
+
+label-focused = %name%
+label-focused-foreground = #6495ED
+label-focused-background = #1C1C1C
+label-focused-underline = #6495ED
+label-focused-padding = 1
+
+label-occupied = %name%
+label-occupied-foreground = #E8AE5B
+label-occupied-background = #1C1C1C
+;label-occupied-underline = #E8AE5B
+label-occupied-padding = 1
+
+label-urgent = %name%
+label-urgent-foreground = #CD5C5C
+label-urgent-background = #1C1C1C
+label-urgent-underline = #CD5C5C
+label-urgent-padding = 1
+
+label-empty = %name%
+label-empty-foreground = #DDCCBB
+label-empty-padding = 1
+
+; Separator in between workspaces
+label-separator = "∙"
+label-separator-padding = 0
+label-separator-foreground = #554444
+
+[module/sep]
+type = custom/text
+content = ◆
+
+content-background = #1C1C1C
+content-foreground = ${color.BLACK}
+content-padding = 2
+
+[module/sep2]
+type = custom/text
+content = " | "
+
+content-background = #1C1C1C
+content-foreground = #DDCCBB
+
+[module/sep3]
+type = custom/text
+content = "  "
+
+content-background = #1C1C1C
+content-foreground = #B0C4DE

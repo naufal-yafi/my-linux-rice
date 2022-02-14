@@ -1,0 +1,2 @@
+#!/bin/sh
+feh --no-fehbg --bg-fill '/home/n4n/.config/bspwm/background/3d.jpg' 
